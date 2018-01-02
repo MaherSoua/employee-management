@@ -66,7 +66,6 @@
     computed: {
       subscriptionType: {
         get () {
-          console.log(this.$store.state.employeeModules)
           return this.$store.state.employeeModules.employee.subscriptionType
         },
         set (value) {
@@ -78,16 +77,16 @@
     methods: {
       submit () {
         if (this.$route.query.id) {
-          this.$store.dispatch('updateEmployee', this.employee)
+          this.$store.dispatch('employeeModules/updateEmployee', this.employee)
           this.$router.push('/employee')
           this.updated = true
         } else {
-          this.$store.dispatch('addEmployee', this.employee)
+          this.$store.dispatch('employeeModules/addEmployee', this.employee)
         }
       },
       updateField (field, event) {
         const value = event.target.value
-        this.$store.commit('updateEmployee', {field, value})
+        this.$store.commit('employeeModules/updateEmployee', {field, value})
       },
       edit (item) {
         this.$router.push('employee?id=' + item._id)
@@ -97,12 +96,12 @@
       },
       remove (item) {
         this.$store.state.employee = {}
-        this.$store.dispatch('removeEmployee', item._id)
+        this.$store.dispatch('employeeModules/removeEmployee', item._id)
       }
     },
     created () {
       if (this.$route.query.id) {
-        this.$store.dispatch('getEmployeeById', this.$route.query.id)
+        this.$store.dispatch('employeeModules/getEmployeeById', this.$route.query.id)
         this.buttonLabel = 'Update'
       }
     },

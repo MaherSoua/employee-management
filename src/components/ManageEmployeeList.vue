@@ -18,8 +18,7 @@
     },
     methods: {
       edit (item) {
-        console.log(item)
-        this.$router.push('employee?id=' + item._id)
+        this.$router.push('employee?id=' + item._id + '&type=employee')
       },
       remove (item) {
         this.$store.dispatch('updateEmployee', {action: 'remove', data: item._id})
@@ -28,6 +27,9 @@
     components: {EmployeeList},
     computed: {
       ...mapState('employeeModules', ['employeeList'])
+    },
+    created () {
+      this.$store.dispatch('employeeModules/getEmployee')
     }
 
   }

@@ -25,7 +25,6 @@
       list: Array
     },
     created () {
-      this.$store.dispatch('employeeModules/getEmployee')
     },
     methods: {
       editEmployee (item) {

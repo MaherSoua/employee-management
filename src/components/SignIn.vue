@@ -27,7 +27,8 @@
       }
     },
     created () {
-
+      this.$store.state.token = null
+      localStorage.setItem('token', null)
     },
     methods: {
       login () {

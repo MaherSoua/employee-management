@@ -69,7 +69,6 @@
       },
       updateField (field, event) {
         const value = event.target.value
-        console.log(field, value)
         this.$store.commit('userModules/updateUser', {field, value})
       }
     },
@@ -90,9 +89,8 @@
     mounted () {
       if (this.$route.query.id) {
         this.isCreateMode = false
-        this.$store.dispatch('getUserById', this.$route.query.id)
+        this.$store.dispatch('userModules/getUserById', this.$route.query.id)
       }
-      console.log(this.$store)
     }
   }
 </script>
