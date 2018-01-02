@@ -20,22 +20,22 @@
       <template v-if="isCreateMode">
         <div class="row">
           <label for="">
-            <input type="password" class="form-control" placeholder="Password" @keyup.stop="updateField('password' , $event)" v-model="user.password">
+            <input type="password" class="form-control" placeholder="Password" @keyup.stop="updateField('password' , $event)" :value="user.password">
           </label>
         </div>
         <div class="row">
           <label for="">
-            <input type="password" class="form-control" placeholder="Confirm Password" v-model="user.passwordConfirm" @keyup.stop="updateField('passwordConfirm' , $event)">
+            <input type="password" class="form-control" placeholder="Confirm Password" :value="user.passwordConfirm" @keyup.stop="updateField('passwordConfirm' , $event)">
           </label>
         </div>
       </template>
 
       <div class="row">
-        <input type="radio" value="block" v-model="user.permission">
+        <input type="radio" value="block" v-model="user.permission" @click.stop="updateField('permission' , $event)">
         <label for="jack">Block</label>
-        <input type="radio" value="read" v-model="user.permission">
+        <input type="radio" value="read" v-model="user.permission" @click.stop="updateField('permission' , $event)">
         <label for="john">Read</label>
-        <input type="radio" value="read_write" v-model="user.permission">
+        <input type="radio" value="read_write" v-model="user.permission" @click.stop="updateField('permission' , $event)">
         <label for="mike">Read/Write</label>
       </div>
       <button type="button" @click="submit($event)" class="btn btn-primary">Submit</button>
@@ -69,13 +69,15 @@
       },
       updateField (field, event) {
         const value = event.target.value
+        console.log(field, value)
         this.$store.commit('updateUser', {field, value})
       }
     },
     watch: {
       user: {
         handler (value, oldValue) {
-          if (value.password === value.passwordConfirm) {
+          if (value.password && value.password.length >= 3 &&
+              value.password === value.passwordConfirm) {
             console.log('it is the same')
           }
         },
