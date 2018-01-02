@@ -31,11 +31,11 @@
       </template>
 
       <div class="row">
-        <input type="radio" value="block" v-model="user.permission" @click.stop="updateField('permission' , $event)">
+        <input type="radio" value="block" v-model="user.permission">
         <label for="jack">Block</label>
-        <input type="radio" value="read" v-model="user.permission" @click.stop="updateField('permission' , $event)">
+        <input type="radio" value="read" v-model="user.permission">
         <label for="john">Read</label>
-        <input type="radio" value="read_write" v-model="user.permission" @click.stop="updateField('permission' , $event)">
+        <input type="radio" value="read_write" v-model="user.permission">
         <label for="mike">Read/Write</label>
       </div>
       <button type="button" @click="submit($event)" class="btn btn-primary">Submit</button>
@@ -70,7 +70,7 @@
       updateField (field, event) {
         const value = event.target.value
         console.log(field, value)
-        this.$store.commit('updateUser', {field, value})
+        this.$store.commit('userModules/updateUser', {field, value})
       }
     },
     watch: {
@@ -85,13 +85,14 @@
       }
     },
     computed: {
-      ...mapState(['userList', 'user'])
+      ...mapState('userModules', ['userList', 'user'])
     },
     mounted () {
       if (this.$route.query.id) {
         this.isCreateMode = false
         this.$store.dispatch('getUserById', this.$route.query.id)
       }
+      console.log(this.$store)
     }
   }
 </script>

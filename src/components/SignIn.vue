@@ -31,7 +31,7 @@
     },
     methods: {
       login () {
-        this.$store.dispatch('login', this.user)
+        this.$store.dispatch('userModules/login', this.user)
       }
     }
   }

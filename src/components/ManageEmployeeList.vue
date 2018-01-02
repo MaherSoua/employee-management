@@ -27,7 +27,7 @@
     },
     components: {EmployeeList},
     computed: {
-      ...mapState(['employeeList'])
+      ...mapState('employeeModules', ['employeeList'])
     }
 
   }

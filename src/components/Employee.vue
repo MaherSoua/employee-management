@@ -66,13 +66,14 @@
     computed: {
       subscriptionType: {
         get () {
-          return this.$store.state.employee.subscriptionType
+          console.log(this.$store.state.employeeModules)
+          return this.$store.state.employeeModules.employee.subscriptionType
         },
         set (value) {
           this.$store.commit('updateEmployee', {field: 'subscriptionType', value})
         }
       },
-      ...mapState(['employee'])
+      ...mapState('employeeModules', ['employee'])
     },
     methods: {
       submit () {

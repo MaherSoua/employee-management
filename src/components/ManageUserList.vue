@@ -27,7 +27,7 @@
       ...mapState(['userList'])
     },
     created () {
-      this.$store.dispatch('getUserList')
+      this.$store.dispatch('userModules/getUserList')
     }
   }
 </script>
